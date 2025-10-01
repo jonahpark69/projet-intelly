@@ -1,3 +1,34 @@
+/* ===== Layout global de la page (sidebar + contenu) ===== */
+html, body { height: 100%; }
+body { margin: 0; }
+
+.page{
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  align-items: start;
+  /* enlever le centrage et la contrainte */
+  max-width: none;   /* au lieu de 1280px */
+  margin: 0;         /* au lieu de 0 auto */
+  padding: 0 16px 0 0; /* retire le padding gauche */
+  
+}
+
+/* le contenu (section dashboard) prend la 2e colonne */
+.section-dashboard{
+  width: 100%;
+}
+
+/* — Responsive : en dessous de 900px on empile — */
+@media (max-width: 900px){
+  .page{
+    grid-template-columns: 1fr;  /* une seule colonne */
+    gap: 16px;
+    padding: 0 12px;
+  }
+  .sidebar{ width: auto; min-height: auto; }
+}
+
 /* En-tête (topbar) */
 .topbar{
   display: flex;
@@ -115,3 +146,372 @@
     position: relative;
     top: -7px; 
 }
+
+/* ===================== Sidebar (dashboard gauche) ===================== */
+.sidebar{
+  background: #387eda;              /* gris très clair comme la maquette */
+  border-right: 1px solid #e5e7eb;
+  padding: 28px 20px 40px 20px;
+  min-height: 100vh;
+}
+
+/* Groupes : MENU / SYSTEM */
+.sidebar__group{ margin-bottom: 36px; }
+
+.sidebar__title{
+  margin: 0 0 18px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6b7280;                    /* gris moyen */
+}
+
+/* Listes d’items */
+.sidebar__list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  row-gap: 18px;                     /* espacement vertical entre items */
+}
+
+/* Lien d’un item */
+.sidebar__link{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: 16px;               /* pastille arrondie pour l’état actif */
+  text-decoration: none;
+  color: #6b7280;                    /* texte par défaut gris */
+  font-size: 22px;                   /* taille proche de la maquette */
+  font-weight: 600;
+  line-height: 1;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Icônes (SVG en <img>) */
+.sidebar__link img{
+  width: 28px;
+  height: 28px;
+  display: block;
+  /* L’icône est fournie en SVG prêt avec la bonne couleur dans /assets/icons */
+}
+
+/* Survol léger pour les items non actifs */
+.sidebar__link:hover{
+  background: #f3f4f6;               /* gris un peu plus marqué */
+  color: #374151;                    /* gris foncé au hover */
+}
+
+/* --------- État actif : aria-current="page" --------- */
+.sidebar__link[aria-current="page"]{
+  background: #d8d6e9;               /* lavande clair comme la carte active */
+  color: #4b3a78;                    /* violet du texte/icône actif */
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px rgba(75,58,120,0.05);
+}
+
+/* Optionnel : petits espacements supplémentaires entre sections */
+#system-title{ margin-top: 8px; }
+
+/* --------- Responsive léger --------- */
+@media (max-width: 900px){
+  .sidebar{ padding: 24px 16px; }
+  .sidebar__link{ font-size: 20px; padding: 14px 16px; }
+  .sidebar__link img{ width: 24px; height: 24px; }
+}
+
+
+/* =========================================================
+   Intelly — Section Dashboard (droite du sidebar)
+   Fichier : assets/css/section-dashboard.css
+   Style simple, en px, sans variables.
+   ========================================================= */
+
+/* ---------- Utilitaires ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Section container ---------- */
+.section-dashboard {
+  padding: 0 24px 24px;
+}
+
+.section-dashboard > h1#dash-title {
+  margin: 20px 0 12px 0;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #111827; /* gris très foncé */
+}
+
+/* ---------- Rangée de KPI ---------- */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin: 8px 0 24px 0;
+}
+
+.kpi-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.kpi-card__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  /* Place ton <img src="assets/svg/mon-icone.svg"> ou inline SVG ici */
+}
+
+/* Variantes de fond pour l’icône (optionnel) */
+.kpi-card--purple .kpi-card__icon {
+  background: linear-gradient(135deg, #7c3aed 0%, #f43f5e 100%);
+}
+.kpi-card--green .kpi-card__icon {
+  background: linear-gradient(135deg, #16a34a 0%, #84cc16 100%);
+}
+.kpi-card--pink .kpi-card__icon {
+  background: linear-gradient(135deg, #a855f7 0%, #ef4444 100%);
+}
+.kpi-card--red .kpi-card__icon {
+  background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+}
+
+.kpi-card__value {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  color: #111827;
+}
+
+.kpi-card__delta {
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #10b981; /* vert +2,1% */
+}
+
+.kpi-card__label {
+  margin: 2px 0 0 0;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #6b7280; /* gris */
+}
+
+/* Empiler le texte valeur + label */
+.kpi-card__texts {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Zone panels (2 colonnes) ---------- */
+.panels {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(16, 24, 40, 0.04);
+  padding: 24px;
+}
+
+/* ---------- Entête des panels ---------- */
+.panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.panel__header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #111827;
+}
+
+/* Outils (sélecteur de date) */
+.panel__tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel__tools input[type="date"],
+.panel__tools input[type="text"],
+.panel__tools select {
+  height: 40px;
+  padding: 0 12px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #111827;
+}
+
+/* ---------- Graphique (gauche) ---------- */
+.panel--chart .chart {
+  display: block;
+  width: 100%;
+  height: 360px;
+  margin-top: 8px;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+/* S’assurer que le canvas occupe bien l’espace prévu */
+.panel--chart .chart canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Top clients (droite) ---------- */
+.panel--top .ranked-list {
+  list-style: none;
+  margin: 12px 0 0 0;
+  padding: 0;
+}
+
+.panel--top .ranked-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #111827;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.panel--top .ranked-list__item:last-child {
+  border-bottom: 0;
+}
+
+.panel--top .count {
+  font-variant-numeric: tabular-nums;
+  color: #6b7280;
+}
+
+/* ---------- Responsive simple ---------- */
+@media (max-width: 1100px) {
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .panels { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .section-dashboard { padding: 0 16px 16px; }
+  .kpi-card { padding: 16px; }
+  .kpi-card__icon { width: 48px; height: 48px; }
+  .panel { padding: 16px; }
+  .panel--chart .chart { height: 300px; }
+}
+
+/* ===== Graphique colonnes — version 100% HTML/CSS ===== */
+.chart-css{ position: relative; }
+
+/* Colonne de graduations à gauche (0..1000) */
+.chart-css .chart__y{
+  position: absolute;
+  left: 0; top: 12px; bottom: 24px;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+/* Grille horizontale (lignes) derrière les barres */
+.chart-css::before{
+  content:"";
+  position: absolute;
+  left: 40px; right: 0; top: 12px; bottom: 24px;
+  border-radius: 10px;
+  background:
+    repeating-linear-gradient(
+      to top,
+      rgba(17,24,39,0.06) 0px,
+      rgba(17,24,39,0.06) 1px,
+      transparent 1px,
+      transparent 40px
+    );
+}
+
+/* Zone des barres (12 colonnes) */
+.chart-css .chart__bars{
+  position: relative;
+  z-index: 1;
+  margin-left: 40px;             /* laisse la place aux graduations */
+  padding: 12px 16px 24px 16px;
+  height: 360px;                  /* hauteur visible du graphe */
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  align-items: end;               /* toutes les barres s’alignent en bas */
+}
+
+/* Une barre */
+.chart-css .bar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Pile verticale (segments) */
+.chart-css .bar__stack{
+  width: 28px;                    /* largeur d’une barre */
+  height: 300px;                  /* zone utile pour les segments */
+  display: flex;
+  flex-direction: column;         /* du bas vers le haut */
+  justify-content: flex-end;
+}
+
+/* Segment bas (violet foncé) */
+.chart-css .bar__done{
+  background: #4b3a78;
+}
+
+/* Segment haut (violet clair) avec arrondi */
+.chart-css .bar__pending{
+  background: #e9e7ff;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Libellé du mois */
+.chart-css .bar__month{
+  margin-top: 8px;
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+/* Astuce : arrondi seulement si le segment haut existe */
+.chart-css .bar__pending[style*="height: 0"]{ border-radius: 0; }

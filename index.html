@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Titre de la page</title>
   <meta name="description" content="Description de la page.">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
 <body>
@@ -45,79 +45,249 @@
 
 
   <!-- Contenu principal -->
-  <main>
-    
-<!-- Sidebar (panneau gauche) -->
-<aside class="sidebar" aria-label="Navigation principale">
-  <!-- Section 1 : MENU -->
-  <section class="sidebar__group" aria-labelledby="menu-title">
-    <h2 id="menu-title" class="sidebar__title">Menu</h2>
-    <nav aria-labelledby="menu-title">
-      <ul class="sidebar__list">
-        <li class="sidebar__item">
-          <a href="#" aria-current="page" class="sidebar__link">
-            <img src="assets/icons/dashboard.svg" alt="" aria-hidden="true">
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li class="sidebar__item">
-          <a href="#" class="sidebar__link">
-            <img src="assets/icons/order.svg" alt="" aria-hidden="true">
-            <span>Order</span>
-          </a>
-        </li>
-        <li class="sidebar__item">
-          <a href="#" class="sidebar__link">
-            <img src="assets/icons/report.svg" alt="" aria-hidden="true">
-            <span>Report</span>
-          </a>
-        </li>
-        <li class="sidebar__item">
-          <a href="#" class="sidebar__link">
-            <img src="assets/icons/track.svg" alt="" aria-hidden="true">
-            <span>Track</span>
-          </a>
-        </li>
-        <li class="sidebar__item">
-          <a href="#" class="sidebar__link">
-            <img src="assets/icons/maintenance.svg" alt="" aria-hidden="true">
-            <span>Maintainance</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+<main class="page">
+  <!-- Sidebar (panneau gauche) -->
+  <aside class="sidebar" aria-label="Navigation principale">
+    <!-- Section 1 : MENU -->
+    <section class="sidebar__group" aria-labelledby="menu-title">
+      <h2 id="menu-title" class="sidebar__title">Menu</h2>
+      <nav aria-labelledby="menu-title">
+        <ul class="sidebar__list">
+          <li class="sidebar__item">
+            <a href="#" aria-current="page" class="sidebar__link">
+              <img src="assets/icons/dashboard.svg" alt="" aria-hidden="true">
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="sidebar__item">
+            <a href="#" class="sidebar__link">
+              <img src="assets/icons/order.svg" alt="" aria-hidden="true">
+              <span>Order</span>
+            </a>
+          </li>
+          <li class="sidebar__item">
+            <a href="#" class="sidebar__link">
+              <img src="assets/icons/report.svg" alt="" aria-hidden="true">
+              <span>Report</span>
+            </a>
+          </li>
+          <li class="sidebar__item">
+            <a href="#" class="sidebar__link">
+              <img src="assets/icons/track.svg" alt="" aria-hidden="true">
+              <span>Track</span>
+            </a>
+          </li>
+          <li class="sidebar__item">
+            <a href="#" class="sidebar__link">
+              <img src="assets/icons/maintenance.svg" alt="" aria-hidden="true">
+              <span>Maintainance</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+
+    <!-- Section 2 : SYSTEM -->
+    <section class="sidebar__group" aria-labelledby="system-title">
+      <h2 id="system-title" class="sidebar__title">System</h2>
+      <nav aria-labelledby="system-title">
+        <ul class="sidebar__list">
+          <li class="sidebar__item">
+            <a href="#" class="sidebar__link">
+              <img src="assets/icons/master-data.svg" alt="" aria-hidden="true">
+              <span>Master Data</span>
+            </a>
+          </li>
+          <li class="sidebar__item">
+            <a href="#" class="sidebar__link">
+              <img src="assets/icons/user.svg" alt="" aria-hidden="true">
+              <span>User</span>
+            </a>
+          </li>
+          <li class="sidebar__item">
+            <a href="#" class="sidebar__link">
+              <img src="assets/icons/role.svg" alt="" aria-hidden="true">
+              <span>Role</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </aside>
+
+  <!-- Section Dashboard (colonne de droite) -->
+  <section class="section-dashboard" aria-labelledby="dash-title">
+    <h1 id="dash-title">Dashboard</h1>
+
+    <!-- Rangée de KPI -->
+    <div class="kpi-row" role="list">
+      <article class="kpi-card" role="listitem">
+        <div class="kpi-card__icon" aria-hidden="true"></div>
+        <div class="kpi-card__texts">
+          <p class="kpi-card__value">
+            <data value="2409">2 409</data>
+            <span class="kpi-card__delta" aria-label="+2,1 %">↑ 2,1%</span>
+          </p>
+          <p class="kpi-card__label">Jumlah Pemesan</p>
+        </div>
+      </article>
+
+      <article class="kpi-card" role="listitem">
+        <div class="kpi-card__icon" aria-hidden="true"></div>
+        <div class="kpi-card__texts">
+          <p class="kpi-card__value"><data value="68.9">68,9%</data></p>
+          <p class="kpi-card__label">Pesanan Selesai</p>
+        </div>
+      </article>
+
+      <article class="kpi-card" role="listitem">
+        <div class="kpi-card__icon" aria-hidden="true"></div>
+        <div class="kpi-card__texts">
+          <p class="kpi-card__value"><data value="68.9">68,9%</data></p>
+          <p class="kpi-card__label">KPI Driver</p>
+        </div>
+      </article>
+
+      <article class="kpi-card" role="listitem">
+        <div class="kpi-card__icon" aria-hidden="true"></div>
+        <div class="kpi-card__texts">
+          <p class="kpi-card__value"><data value="3509">3 509</data></p>
+          <p class="kpi-card__label">Total Customer</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Zone 2 colonnes : graphe + top clients -->
+    <div class="panels">
+      <!-- Statistiques (gauche) -->
+      <section class="panel panel--chart" aria-labelledby="stats-title">
+        <header class="panel__header">
+          <h2 id="stats-title">Statistik Pemesanan</h2>
+          <form class="panel__tools" aria-label="Filtrer la période">
+            <label for="stats-date" class="sr-only">Date</label>
+            <input type="date" id="stats-date" name="date" value="2021-12-18">
+          </form>
+        </header>
+
+       <figure class="chart" aria-labelledby="stats-title">
+  <div class="chart-css" role="img" aria-label="Histogramme mensuel des commandes empilées">
+    <div class="chart__y" aria-hidden="true">
+      <span>1000</span><span>900</span><span>800</span><span>700</span>
+      <span>600</span><span>500</span><span>400</span><span>300</span>
+      <span>200</span><span>100</span><span>0</span>
+    </div>
+
+    <ol class="chart__bars">
+      <!-- Chaque barre : régler les hauteurs en % (done + pending = 100%) -->
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:78%;"></span>
+          <span class="bar__pending" style="height:22%;"></span>
+        </div>
+        <span class="bar__month">Jan</span>
+      </li>
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:50%;"></span>
+          <span class="bar__pending" style="height:50%;"></span>
+        </div>
+        <span class="bar__month">Feb</span>
+      </li>
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:27%;"></span>
+          <span class="bar__pending" style="height:73%;"></span>
+        </div>
+        <span class="bar__month">Mar</span>
+      </li>
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:50%;"></span>
+          <span class="bar__pending" style="height:50%;"></span>
+        </div>
+        <span class="bar__month">Apr</span>
+      </li>
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:72%;"></span>
+          <span class="bar__pending" style="height:28%;"></span>
+        </div>
+        <span class="bar__month">Mei</span>
+      </li>
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:71%;"></span>
+          <span class="bar__pending" style="height:29%;"></span>
+        </div>
+        <span class="bar__month">Jun</span>
+      </li>
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:40%;"></span>
+          <span class="bar__pending" style="height:60%;"></span>
+        </div>
+        <span class="bar__month">Jul</span>
+      </li>
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:90%;"></span>
+          <span class="bar__pending" style="height:10%;"></span>
+        </div>
+        <span class="bar__month">Agu</span>
+      </li>
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:56%;"></span>
+          <span class="bar__pending" style="height:44%;"></span>
+        </div>
+        <span class="bar__month">Sep</span>
+      </li>
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:82%;"></span>
+          <span class="bar__pending" style="height:18%;"></span>
+        </div>
+        <span class="bar__month">Okt</span>
+      </li>
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:69%;"></span>
+          <span class="bar__pending" style="height:31%;"></span>
+        </div>
+        <span class="bar__month">Nov</span>
+      </li>
+      <li class="bar">
+        <div class="bar__stack">
+          <span class="bar__done"    style="height:70%;"></span>
+          <span class="bar__pending" style="height:30%;"></span>
+        </div>
+        <span class="bar__month">Des</span>
+      </li>
+    </ol>
+  </div>
+</figure>
+
+      </section>
+
+      <!-- Top clients (droite) -->
+      <aside class="panel panel--top" aria-labelledby="top-title">
+        <h2 id="top-title">Customer Pemesan Terbanyak</h2>
+        <ol class="ranked-list">
+          <li class="ranked-list__item">
+            PT Javan Cipta Solusi <data value="450" class="count">450</data>
+          </li>
+          <li class="ranked-list__item">
+            CV ABCD <data value="449" class="count">449</data>
+          </li>
+          <li class="ranked-list__item">
+            CV OQURY TRESNA ANJANI <data value="443" class="count">443</data>
+          </li>
+        </ol>
+      </aside>
+    </div>
   </section>
+</main>
 
-  <!-- Section 2 : SYSTEM -->
-  <section class="sidebar__group" aria-labelledby="system-title">
-    <h2 id="system-title" class="sidebar__title">System</h2>
-    <nav aria-labelledby="system-title">
-      <ul class="sidebar__list">
-        <li class="sidebar__item">
-          <a href="#" class="sidebar__link">
-            <img src="assets/icons/master-data.svg" alt="" aria-hidden="true">
-            <span>Master Data</span>
-          </a>
-        </li>
-        <li class="sidebar__item">
-          <a href="#" class="sidebar__link">
-            <img src="assets/icons/user.svg" alt="" aria-hidden="true">
-            <span>User</span>
-          </a>
-        </li>
-        <li class="sidebar__item">
-          <a href="#" class="sidebar__link">
-            <img src="assets/icons/role.svg" alt="" aria-hidden="true">
-            <span>Role</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </section>
-</aside>
-
-
-  </main>
 
   <!-- Pied de page -->
   <footer>
