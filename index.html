@@ -157,143 +157,225 @@
       </article>
     </div>
 
-    <!-- Zone 2 colonnes : graphe + top clients -->
-    <div class="panels">
-      <!-- Statistiques (gauche) -->
-      <section class="panel panel--chart" aria-labelledby="stats-title">
-        <header class="panel__header">
-          <h2 id="stats-title">Statistik Pemesanan</h2>
-          <form class="panel__tools" aria-label="Filtrer la période">
-            <label for="stats-date" class="sr-only">Date</label>
-            <input type="date" id="stats-date" name="date" value="2021-12-18">
-          </form>
-        </header>
+       <!-- Zone 2 colonnes : graphe + top clients -->
+<div class="panels">
+  <!-- Statistiques (gauche) -->
+  <section class="panel panel--chart" aria-labelledby="stats-title">
+    <header class="panel__header">
+      <h2 id="stats-title">Statistik Pemesanan</h2>
+      <form class="panel__tools" aria-label="Filtrer la période">
+        <label for="stats-date" class="sr-only">Date</label>
+        <input type="date" id="stats-date" name="date" value="2021-12-18">
+      </form>
+    </header>
 
-       <figure class="chart" aria-labelledby="stats-title">
-  <div class="chart-css" role="img" aria-label="Histogramme mensuel des commandes empilées">
-    <div class="chart__y" aria-hidden="true">
-      <span>1000</span><span>900</span><span>800</span><span>700</span>
-      <span>600</span><span>500</span><span>400</span><span>300</span>
-      <span>200</span><span>100</span><span>0</span>
+    <!-- Graphique  -->
+    <div class="chart">
+      <div class="chart-css"
+           role="img"
+           aria-label="Histogramme mensuel des commandes 2021 — segments done vs pending">
+        <div class="chart__y" aria-hidden="true">
+          <span>1000</span><span>900</span><span>800</span><span>700</span>
+          <span>600</span><span>500</span><span>400</span><span>300</span>
+          <span>200</span><span>100</span><span>0</span>
+        </div>
+
+        <ol class="chart__bars" aria-hidden="true">
+          <!-- Chaque barre : done% + pending% = 100% -->
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:78%;"></span>
+              <span class="bar__pending" style="height:22%;"></span>
+            </div>
+            <span class="bar__month">Jan</span>
+          </li>
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:50%;"></span>
+              <span class="bar__pending" style="height:50%;"></span>
+            </div>
+            <span class="bar__month">Feb</span>
+          </li>
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:27%;"></span>
+              <span class="bar__pending" style="height:73%;"></span>
+            </div>
+            <span class="bar__month">Mar</span>
+          </li>
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:50%;"></span>
+              <span class="bar__pending" style="height:50%;"></span>
+            </div>
+            <span class="bar__month">Apr</span>
+          </li>
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:72%;"></span>
+              <span class="bar__pending" style="height:28%;"></span>
+            </div>
+            <span class="bar__month">Mei</span>
+          </li>
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:71%;"></span>
+              <span class="bar__pending" style="height:29%;"></span>
+            </div>
+            <span class="bar__month">Jun</span>
+          </li>
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:40%;"></span>
+              <span class="bar__pending" style="height:60%;"></span>
+            </div>
+            <span class="bar__month">Jul</span>
+          </li>
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:90%;"></span>
+              <span class="bar__pending" style="height:10%;"></span>
+            </div>
+            <span class="bar__month">Agu</span>
+          </li>
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:56%;"></span>
+              <span class="bar__pending" style="height:44%;"></span>
+            </div>
+            <span class="bar__month">Sep</span>
+          </li>
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:82%;"></span>
+              <span class="bar__pending" style="height:18%;"></span>
+            </div>
+            <span class="bar__month">Okt</span>
+          </li>
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:69%;"></span>
+              <span class="bar__pending" style="height:31%;"></span>
+            </div>
+            <span class="bar__month">Nov</span>
+          </li>
+          <li class="bar">
+            <div class="bar__stack">
+              <span class="bar__done"    style="height:70%;"></span>
+              <span class="bar__pending" style="height:30%;"></span>
+            </div>
+            <span class="bar__month">Des</span>
+          </li>
+        </ol>
+      </div>
     </div>
+  </section>
 
-    <ol class="chart__bars">
-      <!-- Chaque barre : régler les hauteurs en % (done + pending = 100%) -->
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:78%;"></span>
-          <span class="bar__pending" style="height:22%;"></span>
-        </div>
-        <span class="bar__month">Jan</span>
+  <!-- Top clients (droite) -->
+  <aside class="panel panel--top" aria-labelledby="top-title">
+    <h2 id="top-title">Customer Pemesan Terbanyak</h2>
+    <ol class="ranked-list">
+      <li class="ranked-list__item">
+        PT Javan Cipta Solusi <data value="450" class="count">450</data>
       </li>
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:50%;"></span>
-          <span class="bar__pending" style="height:50%;"></span>
-        </div>
-        <span class="bar__month">Feb</span>
+      <li class="ranked-list__item">
+        CV ABCD <data value="449" class="count">449</data>
       </li>
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:27%;"></span>
-          <span class="bar__pending" style="height:73%;"></span>
-        </div>
-        <span class="bar__month">Mar</span>
-      </li>
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:50%;"></span>
-          <span class="bar__pending" style="height:50%;"></span>
-        </div>
-        <span class="bar__month">Apr</span>
-      </li>
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:72%;"></span>
-          <span class="bar__pending" style="height:28%;"></span>
-        </div>
-        <span class="bar__month">Mei</span>
-      </li>
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:71%;"></span>
-          <span class="bar__pending" style="height:29%;"></span>
-        </div>
-        <span class="bar__month">Jun</span>
-      </li>
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:40%;"></span>
-          <span class="bar__pending" style="height:60%;"></span>
-        </div>
-        <span class="bar__month">Jul</span>
-      </li>
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:90%;"></span>
-          <span class="bar__pending" style="height:10%;"></span>
-        </div>
-        <span class="bar__month">Agu</span>
-      </li>
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:56%;"></span>
-          <span class="bar__pending" style="height:44%;"></span>
-        </div>
-        <span class="bar__month">Sep</span>
-      </li>
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:82%;"></span>
-          <span class="bar__pending" style="height:18%;"></span>
-        </div>
-        <span class="bar__month">Okt</span>
-      </li>
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:69%;"></span>
-          <span class="bar__pending" style="height:31%;"></span>
-        </div>
-        <span class="bar__month">Nov</span>
-      </li>
-      <li class="bar">
-        <div class="bar__stack">
-          <span class="bar__done"    style="height:70%;"></span>
-          <span class="bar__pending" style="height:30%;"></span>
-        </div>
-        <span class="bar__month">Des</span>
+      <li class="ranked-list__item">
+        CV OQURY TRESNA ANJANI <data value="443" class="count">443</data>
       </li>
     </ol>
-  </div>
-</figure>
+  </aside>
+</div>
 
       </section>
 
-      <!-- Top clients (droite) -->
-      <aside class="panel panel--top" aria-labelledby="top-title">
-        <h2 id="top-title">Customer Pemesan Terbanyak</h2>
-        <ol class="ranked-list">
-          <li class="ranked-list__item">
-            PT Javan Cipta Solusi <data value="450" class="count">450</data>
-          </li>
-          <li class="ranked-list__item">
-            CV ABCD <data value="449" class="count">449</data>
-          </li>
-          <li class="ranked-list__item">
-            CV OQURY TRESNA ANJANI <data value="443" class="count">443</data>
-          </li>
-        </ol>
-      </aside>
     </div>
   </section>
+
+<!-- ====== Section 2 : Overview des commandes ====== -->
+<section class="section-orders" aria-labelledby="orders-title">
+  <!-- En-tête de section : titre + recherche -->
+  <header class="section-orders__header">
+    <h2 id="orders-title">Overview des commandes</h2>
+
+    <form class="section-orders__search" role="search" aria-label="Rechercher dans les commandes">
+      <label for="orders-search" class="sr-only">Rechercher</label>
+      <input id="orders-search" name="q" type="search" placeholder="Rechercher…">
+    </form>
+  </header>
+
+  <!-- Tableau des commandes -->
+  <div class="table-wrapper" role="region" aria-labelledby="orders-title">
+    <table class="table-orders">
+      <caption class="sr-only">Liste des commandes avec client, type, quantité et date d’envoi</caption>
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Nom du client</th>
+          <th scope="col">Type</th>
+          <th scope="col">Quantité</th>
+          <th scope="col">Date d’envoi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Brad Simmons</td>
+          <td>Pertamax</td>
+          <td>2000 L</td>
+          <td>21 décembre 2021</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jessie Clarson</td>
+          <td>Turbo</td>
+          <td>2000 L</td>
+          <td>20 décembre 2021</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<!-- ====== Section 3 — Footer : Pagination ====== -->
+<section class="section-orders__footer" aria-labelledby="pagination-title">
+
+  <nav class="pagination" aria-label="Pagination des commandes">
+    <ul class="pagination__list" role="list">
+      <!-- Prev (désactivé si page 1) -->
+      <li class="pagination__item">
+        <a href="#" class="pagination__link is-prev" aria-disabled="true" tabindex="-1">Prev</a>
+      </li>
+
+      <!-- Pages -->
+      <li class="pagination__item">
+        <a href="#" class="pagination__link is-current" aria-current="page">1</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">2</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">3</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">4</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">5</a>
+      </li>
+
+      <!-- Next -->
+      <li class="pagination__item">
+        <a href="#" class="pagination__link is-next">Next</a>
+      </li>
+    </ul>
+  </nav>
+</section>
+
+
 </main>
-
-
-  <!-- Pied de page -->
-  <footer>
-    <!-- contenu du footer -->
-  </footer>
-
-  
+ 
 </body>
 </html>

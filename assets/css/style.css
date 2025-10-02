@@ -4,29 +4,45 @@ body { margin: 0; }
 
 .page{
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 260px 1fr;  /* Sidebar | Contenu */
   gap: 24px;
   align-items: start;
-  /* enlever le centrage et la contrainte */
-  max-width: none;   /* au lieu de 1280px */
-  margin: 0;         /* au lieu de 0 auto */
-  padding: 0 16px 0 0; /* retire le padding gauche */
-  
+  max-width: none;
+  margin: 0;
+  padding: 0 16px 0 0;              /* retire le padding gauche */
 }
 
-/* le contenu (section dashboard) prend la 2e colonne */
+/* Sidebar (colonne 1) */
+.sidebar{
+  grid-column: 1;                   /* << place en 1ère colonne */
+  background: #387eda;
+  border-right: 1px solid #e5e7eb;
+  padding: 28px 20px 40px 20px;
+  min-height: 100vh;
+}
+
+/* Contenu dashboard (colonne 2) */
 .section-dashboard{
+  grid-column: 2;                   /* << force en 2e colonne */
   width: 100%;
+  padding: 0 24px 24px;
+  display: grid;                    /* empile les sous-sections de la colonne */
+  grid-template-columns: 1fr;
+  gap: 0px;                        /* espace entre section 1 et section 2 */
 }
 
 /* — Responsive : en dessous de 900px on empile — */
 @media (max-width: 900px){
   .page{
-    grid-template-columns: 1fr;  /* une seule colonne */
+    grid-template-columns: 1fr;     /* une seule colonne */
     gap: 16px;
     padding: 0 12px;
   }
-  .sidebar{ width: auto; min-height: auto; }
+  .sidebar{
+    grid-column: 1;
+    width: auto; min-height: auto;
+  }
+  .section-dashboard{ grid-column: 1; padding: 0 16px 16px; }
 }
 
 /* En-tête (topbar) */
@@ -46,13 +62,12 @@ body { margin: 0; }
   align-items: center;
 }
 .topbar__brand img{
-  height: 28px;      
-  width: auto;       
+  height: 28px;
+  width: auto;
   display: block;
-  max-width: 100%;
-  right: 30px;
-  position: relative; 
+  position: relative;
   left: 110px; 
+  right: 30px;
 }
 
 /* ========== Recherche ========== */
@@ -60,36 +75,36 @@ body { margin: 0; }
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0;                     
-  flex: 0 0 700px;            
-  margin-left: 250px;         
-  margin-right: 500px;        
+  gap: 0;
+  flex: 0 0 700px;
+  margin-left: 250px;
+  margin-right: 500px;
   max-width: 720px;
 }
 
 .topbar__search input{
   flex: 1 1 auto;
   height: 36px;
-  padding: 0 40px 0 12px;     
-  background: #dfdfdf;        
+  padding: 0 40px 0 12px;
+  background: #dfdfdf;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
 }
 
 .topbar__search > button {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    margin-top: -12px; 
-    width: 24px;
-    height: 24px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    padding: 0;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -12px;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
 }
 
 .topbar__search > button img,
@@ -98,7 +113,6 @@ body { margin: 0; }
   height: 20px;
   display: block;
 }
-
 
 /* Actions à droite */
 .topbar__actions{
@@ -132,30 +146,22 @@ body { margin: 0; }
 }
 
 .topbar__org .arrow-down {
-    width: 20px;
-    height: 20px;
-    display: block; 
+  width: 20px;
+  height: 20px;
+  display: block; 
 }
 
 /* Badge de notifications */
 .topbar__notif .icon-bell {
-    width: 50px; 
-    height: 50px;
-    display: block; 
-    margin: auto; 
-    position: relative;
-    top: -7px; 
+  width: 50px; 
+  height: 50px;
+  display: block; 
+  margin: auto; 
+  position: relative;
+  top: -7px; 
 }
 
-/* ===================== Sidebar (dashboard gauche) ===================== */
-.sidebar{
-  background: #387eda;              /* gris très clair comme la maquette */
-  border-right: 1px solid #e5e7eb;
-  padding: 28px 20px 40px 20px;
-  min-height: 100vh;
-}
-
-/* Groupes : MENU / SYSTEM */
+/* ===================== Sidebar (dashboard gauche) — suite ===================== */
 .sidebar__group{ margin-bottom: 36px; }
 
 .sidebar__title{
@@ -164,73 +170,62 @@ body { margin: 0; }
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #6b7280;                    /* gris moyen */
+  color: #6b7280;
 }
 
-/* Listes d’items */
 .sidebar__list{
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  row-gap: 18px;                     /* espacement vertical entre items */
+  row-gap: 18px;
 }
 
-/* Lien d’un item */
 .sidebar__link{
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 16px 18px;
-  border-radius: 16px;               /* pastille arrondie pour l’état actif */
+  border-radius: 16px;
   text-decoration: none;
-  color: #6b7280;                    /* texte par défaut gris */
-  font-size: 22px;                   /* taille proche de la maquette */
+  color: #6b7280;
+  font-size: 22px;
   font-weight: 600;
   line-height: 1;
   transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Icônes (SVG en <img>) */
 .sidebar__link img{
   width: 28px;
   height: 28px;
   display: block;
-  /* L’icône est fournie en SVG prêt avec la bonne couleur dans /assets/icons */
 }
 
-/* Survol léger pour les items non actifs */
 .sidebar__link:hover{
-  background: #f3f4f6;               /* gris un peu plus marqué */
-  color: #374151;                    /* gris foncé au hover */
+  background: #f3f4f6;
+  color: #374151;
 }
 
-/* --------- État actif : aria-current="page" --------- */
 .sidebar__link[aria-current="page"]{
-  background: #d8d6e9;               /* lavande clair comme la carte active */
-  color: #4b3a78;                    /* violet du texte/icône actif */
+  background: #d8d6e9;
+  color: #4b3a78;
   font-weight: 700;
   box-shadow: inset 0 0 0 1px rgba(75,58,120,0.05);
 }
 
-/* Optionnel : petits espacements supplémentaires entre sections */
 #system-title{ margin-top: 8px; }
 
-/* --------- Responsive léger --------- */
 @media (max-width: 900px){
   .sidebar{ padding: 24px 16px; }
   .sidebar__link{ font-size: 20px; padding: 14px 16px; }
   .sidebar__link img{ width: 24px; height: 24px; }
 }
 
-
 /* =========================================================
    Intelly — Section Dashboard (droite du sidebar)
-   Fichier : assets/css/section-dashboard.css
-   Style simple, en px, sans variables.
    ========================================================= */
 
-/* ---------- Utilitaires ---------- */
+/* ---------- Utilitaire a11y ---------- */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -243,17 +238,13 @@ body { margin: 0; }
   border: 0;
 }
 
-/* ---------- Section container ---------- */
-.section-dashboard {
-  padding: 0 24px 24px;
-}
-
+/* ---------- Titre principal du dashboard ---------- */
 .section-dashboard > h1#dash-title {
   margin: 20px 0 12px 0;
   font-size: 32px;
   font-weight: 800;
   line-height: 1.2;
-  color: #111827; /* gris très foncé */
+  color: #111827;
 }
 
 /* ---------- Rangée de KPI ---------- */
@@ -281,10 +272,8 @@ body { margin: 0; }
   border-radius: 12px;
   display: grid;
   place-items: center;
-  /* Place ton <img src="assets/svg/mon-icone.svg"> ou inline SVG ici */
 }
 
-/* Variantes de fond pour l’icône (optionnel) */
 .kpi-card--purple .kpi-card__icon {
   background: linear-gradient(135deg, #7c3aed 0%, #f43f5e 100%);
 }
@@ -306,25 +295,9 @@ body { margin: 0; }
   color: #111827;
 }
 
-.kpi-card__delta {
-  margin-left: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #10b981; /* vert +2,1% */
-}
-
-.kpi-card__label {
-  margin: 2px 0 0 0;
-  font-size: 14px;
-  line-height: 1.2;
-  color: #6b7280; /* gris */
-}
-
-/* Empiler le texte valeur + label */
-.kpi-card__texts {
-  display: flex;
-  flex-direction: column;
-}
+.kpi-card__delta { margin-left: 6px; font-size: 12px; font-weight: 700; color: #10b981; }
+.kpi-card__label { margin: 2px 0 0 0; font-size: 14px; line-height: 1.2; color: #6b7280; }
+.kpi-card__texts { display: flex; flex-direction: column; }
 
 /* ---------- Zone panels (2 colonnes) ---------- */
 .panels {
@@ -357,7 +330,6 @@ body { margin: 0; }
   color: #111827;
 }
 
-/* Outils (sélecteur de date) */
 .panel__tools {
   display: flex;
   align-items: center;
@@ -374,23 +346,6 @@ body { margin: 0; }
   border-radius: 8px;
   font-size: 14px;
   color: #111827;
-}
-
-/* ---------- Graphique (gauche) ---------- */
-.panel--chart .chart {
-  display: block;
-  width: 100%;
-  height: 360px;
-  margin-top: 8px;
-  border-radius: 10px;
-  background: #ffffff;
-}
-
-/* S’assurer que le canvas occupe bien l’espace prévu */
-.panel--chart .chart canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
 }
 
 /* ---------- Top clients (droite) ---------- */
@@ -410,14 +365,8 @@ body { margin: 0; }
   border-bottom: 1px solid #f3f4f6;
 }
 
-.panel--top .ranked-list__item:last-child {
-  border-bottom: 0;
-}
-
-.panel--top .count {
-  font-variant-numeric: tabular-nums;
-  color: #6b7280;
-}
+.panel--top .ranked-list__item:last-child { border-bottom: 0; }
+.panel--top .count { font-variant-numeric: tabular-nums; color: #6b7280; }
 
 /* ---------- Responsive simple ---------- */
 @media (max-width: 1100px) {
@@ -425,18 +374,9 @@ body { margin: 0; }
   .panels { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 720px) {
-  .section-dashboard { padding: 0 16px 16px; }
-  .kpi-card { padding: 16px; }
-  .kpi-card__icon { width: 48px; height: 48px; }
-  .panel { padding: 16px; }
-  .panel--chart .chart { height: 300px; }
-}
-
 /* ===== Graphique colonnes — version 100% HTML/CSS ===== */
 .chart-css{ position: relative; }
 
-/* Colonne de graduations à gauche (0..1000) */
 .chart-css .chart__y{
   position: absolute;
   left: 0; top: 12px; bottom: 24px;
@@ -449,7 +389,6 @@ body { margin: 0; }
   pointer-events: none;
 }
 
-/* Grille horizontale (lignes) derrière les barres */
 .chart-css::before{
   content:"";
   position: absolute;
@@ -465,53 +404,189 @@ body { margin: 0; }
     );
 }
 
-/* Zone des barres (12 colonnes) */
 .chart-css .chart__bars{
   position: relative;
   z-index: 1;
-  margin-left: 40px;             /* laisse la place aux graduations */
+  margin-left: 40px;
   padding: 12px 16px 24px 16px;
-  height: 360px;                  /* hauteur visible du graphe */
+  height: 360px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
-  align-items: end;               /* toutes les barres s’alignent en bas */
+  align-items: end;
 }
 
-/* Une barre */
-.chart-css .bar{
+.chart-css .bar{ display: flex; flex-direction: column; align-items: center; }
+.chart-css .bar__stack{
+  width: 28px;
+  height: 300px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-/* Pile verticale (segments) */
-.chart-css .bar__stack{
-  width: 28px;                    /* largeur d’une barre */
-  height: 300px;                  /* zone utile pour les segments */
-  display: flex;
-  flex-direction: column;         /* du bas vers le haut */
   justify-content: flex-end;
 }
-
-/* Segment bas (violet foncé) */
-.chart-css .bar__done{
-  background: #4b3a78;
-}
-
-/* Segment haut (violet clair) avec arrondi */
-.chart-css .bar__pending{
-  background: #e9e7ff;
-  border-radius: 10px 10px 0 0;
-}
-
-/* Libellé du mois */
-.chart-css .bar__month{
-  margin-top: 8px;
-  font-size: 12px;
-  color: #9ca3af;
-  text-align: center;
-}
-
-/* Astuce : arrondi seulement si le segment haut existe */
+.chart-css .bar__done{ background: #4b3a78; }
+.chart-css .bar__pending{ background: #e9e7ff; border-radius: 10px 10px 0 0; }
+.chart-css .bar__month{ margin-top: 8px; font-size: 12px; color: #9ca3af; text-align: center; }
 .chart-css .bar__pending[style*="height: 0"]{ border-radius: 0; }
+
+/* ====== Section : Overview des commandes (Section 2) ====== */
+/* >>> IMPORTANT : place la section 2 dans la colonne contenu (colonne 2) */
+.section-orders{
+  grid-column: 2;                   /* << force en 2e colonne même si sibling de .sidebar/.section-dashboard */
+  width: 100%;
+  margin-top: 0;                    /* l’espace est géré par le gap du conteneur/flux */
+  margin-top: -200px;
+}
+
+/* Titre + recherche */
+.section-orders__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 0px 0;
+  padding: 0 12px;
+}
+.section-orders__header h2{
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* Champ de recherche */
+.section-orders__search input{
+  width: 280px;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f7f9fc;
+  font-size: 14px;
+  outline: none;
+}
+.section-orders__search input::placeholder{ color: #9aa4b2; }
+
+/* Carte contenant le tableau */
+.table-wrapper{
+  background: #ffffff;
+  border: 1px solid #e6ecf2;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+/* ===== Tableau ===== */
+.table-orders{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+.table-orders thead th{
+  text-align: left;
+  font-weight: 700;
+  font-size: 14px;
+  color: #0f172a;
+  padding: 14px 18px;
+  background: #eef3f7;
+  white-space: nowrap;
+}
+.table-orders tbody td{
+  font-size: 14px;
+  color: #1f2937;
+  padding: 16px 18px;
+}
+.table-orders tbody tr:nth-child(odd){ background: #ffffff; }
+.table-orders tbody tr:nth-child(even){ background: #f6f9fc; }
+.table-orders tbody tr:hover{ background: #f1f5f9; }
+
+/* État vide */
+.orders-empty{
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  color: #9a3412;
+  font-size: 14px;
+}
+
+/* Responsive header section 2 */
+@media (max-width: 900px){
+  .section-orders__header{
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+  }
+  .section-orders__search input{ width: 100%; }
+}
+
+/* ===== Section — Footer Pagination ===== */
+/* >>> IMPORTANT : si la pagination est un sibling direct de .page, place-la aussi en colonne 2 */
+.section-orders__footer{
+  grid-column: 2;                   /* << force en 2e colonne */
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.pagination{ display: block; }
+.pagination__list{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pagination__link{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid #e6e9f0;
+  background: #f6f8fb;
+  color: #9aa4b2;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1;
+  cursor: pointer;
+}
+.pagination__item .pagination__link:not(.is-prev):not(.is-next){ padding: 0; }
+.pagination__link.is-current,
+.pagination__link[aria-current="page"]{
+  background: #4f437f;
+  border-color: #4f437f;
+  color: #ffffff;
+}
+.pagination__link.is-prev,
+.pagination__link.is-next{
+  background: transparent;
+  border: none;
+  min-width: auto;
+  height: auto;
+  padding: 0;
+}
+.pagination__link.is-prev{ color: #6b7280; }
+.pagination__link.is-next{ color: #0f1740; }
+
+.pagination__link:hover{ filter: brightness(0.98); }
+.pagination__link.is-prev:hover,
+.pagination__link.is-next:hover{ text-decoration: underline; }
+
+.pagination__link[aria-disabled="true"]{
+  color: #c0c6d1;
+  pointer-events: none;
+  text-decoration: none;
+}
+@media (max-width: 480px){
+  .pagination__list{ gap: 8px; }
+  .pagination__link{ min-width: 36px; height: 36px; font-size: 13px; }
+}
+
